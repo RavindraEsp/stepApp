@@ -6,9 +6,9 @@ import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:step_app/modules/home/home_screen_provider.dart';
-import 'package:step_app/second_screen.dart';
+import 'package:step_app/dashboard/second_screen.dart';
 
-import 'helper/common_method.dart';
+import '../helper/common_method.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

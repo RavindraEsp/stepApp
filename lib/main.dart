@@ -4,12 +4,13 @@ import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:step_app/bottom_navigation.dart';
+import 'package:step_app/bottomNavigation/bottom_navigation.dart';
 import 'package:step_app/helper/common_method.dart';
 import 'package:step_app/modules/home/home_screen_provider.dart';
-import 'package:step_app/second_screen.dart';
+import 'package:step_app/dashboard/second_screen.dart';
 
-import 'home_screen.dart';
+import 'dashboard/home_screen.dart';
+import 'modules/auth/selectCountry/select_country_screen.dart';
 import 'modules/intro/intro_screen.dart';
 import 'modules/settings/termCondition/term_condition_screen.dart';
 import 'modules/splash/splash_screen.dart';
@@ -62,7 +63,8 @@ class MyApp extends StatelessWidget {
 
                 ],
                 // child: const BottomNavigationWidget(),
-                child: const IntroScreen(),
+             //   child: const IntroScreen(),
+                child: const SelectCountryScreen(),
               //  child: const TermConditionScreen(),
               )
           );

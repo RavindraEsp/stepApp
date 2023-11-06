@@ -30,6 +30,10 @@ class StyleUtility {
       fontWeight: FontWeight.w700,
       color: ColorUtility.colorE8E8E8);
 
+  static TextStyle soraSemiBold2F3034TextStyle = GoogleFonts.sora(
+      fontWeight: FontWeight.w600,
+      color: ColorUtility.color2F3034);
+
   static TextStyle soraRegular999999TextStyle = GoogleFonts.sora(
       fontWeight: FontWeight.w700,
       color: ColorUtility.color999999);

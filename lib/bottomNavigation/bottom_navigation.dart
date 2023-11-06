@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:step_app/home_screen.dart';
+import 'package:step_app/dashboard/home_screen.dart';
 import 'package:step_app/modules/home/home_screen_provider.dart';
 
 
