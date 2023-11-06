@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
-import 'package:step_app/modules/home_screen_provider.dart';
+import 'package:step_app/modules/home/home_screen_provider.dart';
 import 'package:step_app/second_screen.dart';
 
 import 'helper/common_method.dart';
