@@ -26,6 +26,7 @@ class ColorUtility {
   static const Color color999999 = Color(0xFF999999);
   static const Color color20CA3B = Color(0xFF20CA3B);
   static const Color color2F3034 = Color(0xFF2F3034);
+  static const Color colorFC2E2E = Color(0xFFFC2E2E);
   static  Color borderColor = Colors.grey.withOpacity(0.5);
 
 

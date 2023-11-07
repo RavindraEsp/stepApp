@@ -7,7 +7,7 @@ import 'package:pedometer/pedometer.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:step_app/helper/common_method.dart';
 
-class HomeScreenProvider extends ChangeNotifier {
+class DashBoardScreenProvider extends ChangeNotifier {
   var value = 0;
 
   late Stream<StepCount> _stepCountStream;
@@ -23,7 +23,7 @@ class HomeScreenProvider extends ChangeNotifier {
 
   bool shouldCallApiFunction = true;
 
-  HomeScreenProvider() {
+  DashBoardScreenProvider() {
     print("Provider init called");
   }
 

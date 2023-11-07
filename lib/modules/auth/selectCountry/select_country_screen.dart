@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:step_app/bottomNavigation/bottom_navigation.dart';
+import 'package:step_app/dashboard/dashboard_screen_provider.dart';
+import 'package:step_app/routes/route_name.dart';
 import 'package:step_app/utilities/color_utility.dart';
 import 'package:step_app/utilities/style_utility.dart';
 import 'package:step_app/utilities/text_size_utility.dart';
@@ -15,9 +19,16 @@ class SelectCountryScreen extends StatefulWidget {
 class _SelectCountryScreenState extends State<SelectCountryScreen> {
   int _selectedIndex = -1; // Index of the selected checkbox, -1 for none
 
-  List<String> items = ['India', 'Australia', 'Canada', 'Bangladesh', 'Germany','Argentina','China',
-  'Afghanistan',
-  'Brazil'
+  List<String> items = [
+    'India',
+    'Australia',
+    'Canada',
+    'Bangladesh',
+    'Germany',
+    'Argentina',
+    'China',
+    'Afghanistan',
+    'Brazil'
   ];
 
   @override
@@ -84,7 +95,18 @@ class _SelectCountryScreenState extends State<SelectCountryScreen> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: CustomButton(buttonText: "Continue"),
+              child: CustomButton(
+                  onTap: () {
+                    if (_selectedIndex != -1) {
+                      // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder:
+                      //     (context) => BottomNavigationWidget()), (route) => false);
+
+                      Navigator.pushNamedAndRemoveUntil(context, RouteName.bottomBarScreen,
+                              (route) => false);
+
+                    }
+                  },
+                  buttonText: "Continue"),
             ),
             SizedBox(
               height: 30.h,

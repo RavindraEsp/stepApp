@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:step_app/modules/auth/selectCountry/select_country_screen.dart';
 import 'package:step_app/modules/settings/termCondition/term_condition_screen.dart';
 import 'package:step_app/utilities/enum.dart';
 import 'package:step_app/utilities/image_utility.dart';
@@ -56,6 +57,12 @@ class IntroScreen extends StatelessWidget {
                   height: 24.h,
                 ),
                 CustomButton(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SelectCountryScreen()));
+                  },
                   buttonText: "Sign up",
                   buttonType: ButtonType.borderType,
                 ),
@@ -76,10 +83,15 @@ class IntroScreen extends StatelessWidget {
                           fontSize: TextSizeUtility.textSize13.sp,
                           decoration: TextDecoration.underline,
                         ),
-                        recognizer: TapGestureRecognizer()..onTap = () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => TermConditionScreen()));
-                        // Single tapped.
-                      },
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        TermConditionScreen()));
+                            // Single tapped.
+                          },
                       ),
                       TextSpan(
                         text: " and ",
@@ -93,9 +105,10 @@ class IntroScreen extends StatelessWidget {
                           fontSize: TextSizeUtility.textSize13.sp,
                           decoration: TextDecoration.underline,
                         ),
-                        recognizer: TapGestureRecognizer()..onTap = () {
-                          // Single tapped.
-                        },
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            // Single tapped.
+                          },
                       ),
                     ],
                   ),

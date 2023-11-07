@@ -21,6 +21,8 @@ class StyleUtility {
       fontWeight: FontWeight.w400,
       color: ColorUtility.colorFBF8FF);
 
+  static TextStyle bottomTabTextStyle = GoogleFonts.sora(
+      fontWeight: FontWeight.w400,);
 
   static TextStyle soraRegularWhiteTextStyle = GoogleFonts.sora(
       fontWeight: FontWeight.w400,
@@ -32,6 +34,10 @@ class StyleUtility {
 
   static TextStyle soraSemiBold2F3034TextStyle = GoogleFonts.sora(
       fontWeight: FontWeight.w600,
+      color: ColorUtility.color2F3034);
+
+  static TextStyle soraRegular2F3034TextStyle = GoogleFonts.sora(
+      fontWeight: FontWeight.w400,
       color: ColorUtility.color2F3034);
 
   static TextStyle soraRegular999999TextStyle = GoogleFonts.sora(
