@@ -17,6 +17,8 @@ class DashBoardScreenProvider extends ChangeNotifier {
   bool isGetInitialValue = false;
   int pedometerInitialValue = 0;
 
+  bool isWalking = false;
+
   ////////
 
   Timer? apiTimer;
@@ -25,6 +27,12 @@ class DashBoardScreenProvider extends ChangeNotifier {
 
   DashBoardScreenProvider() {
     print("Provider init called");
+  }
+
+  dashboardApiCAll() {
+    if (isWalking == false) {
+      CommonMethod.showSuccessToast(msg: "Dashboard Api Called");
+    }
   }
 
   updateV() {
@@ -37,65 +45,77 @@ class DashBoardScreenProvider extends ChangeNotifier {
     print("value $value");
   }
 
-  addTimerForApiCall() {
-    apiTimer = Timer.periodic(Duration(seconds: 5), (timer) {
+  startApiCallAnAddTimerForSendDataApiCall() {
+    //start api success response
+    checkPermission();
+
+    // set walikimg
+
+    isWalking = true;
+    isGetInitialValue = false ; // for get default pedometer and stop condition value
+    apiTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
       // Call your function here
       print('Function called at ${DateTime.now()}');
       CommonMethod.showSuccessToast(msg: "Api Called");
     });
   }
 
+  stopWalk() {
+    apiTimer?.cancel();
+
+    isWalking = false;
+
+    CommonMethod.showSuccessToast(msg: "Stop Api Called ad timer off");
+
+  }
+
   void onStepCount(StepCount event) {
     print(event);
-    // setState(() {
-    if (isGetInitialValue == false) {
-      //  pedometerInitialValue = event.steps;
-      pedometerInitialValue = event.steps - int.parse(steps);
-      isGetInitialValue = true;
+
+    if (isWalking == true) {
+      if (isGetInitialValue == false) {
+        //  pedometerInitialValue = event.steps;
+
+        pedometerInitialValue = event.steps - int.parse(steps);
+        isGetInitialValue = true;
+      }
+      //   _steps = event.steps.toString();
+
+      var calculatedStep = event.steps - pedometerInitialValue;
+      steps = calculatedStep.toString();
+      notifyListeners();
+
+      print("Initial value $pedometerInitialValue");
     }
-    //   _steps = event.steps.toString();
-
-    var calculatedStep = event.steps - pedometerInitialValue;
-    steps = calculatedStep.toString();
-    //   });
-
     notifyListeners();
   }
 
-  void dummyMethod() {
-    var actualValue = 0;
 
-    // actualValue = streamPedometer - startPedometerData;
-  }
 
   void onPedestrianStatusChanged(PedestrianStatus event) {
     print(event);
-    // setState(() {
+
     status = event.status;
-    //  });
 
     notifyListeners();
   }
 
   void onPedestrianStatusError(error) {
     print('onPedestrianStatusError: $error');
-    // setState(() {
     status = 'Pedestrian Status not available';
-    //  });
     print(status);
     notifyListeners();
   }
 
   void onStepCountError(error) {
     print('onStepCountError: $error');
-    //  setState(() {
+
     steps = 'Step Count not available';
     notifyListeners();
-    //  });
+
   }
 
   Future<void> checkPermission() async {
-    // PermissionStatus status = await Permission.activityRecognition.status;
     PermissionStatus status = await Permission.activityRecognition.request();
 
     if (status.isGranted) {
@@ -107,10 +127,7 @@ class DashBoardScreenProvider extends ChangeNotifier {
     }
   }
 
-  stopPedometer() {}
-
   void initPlatformState() {
-
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
     _pedestrianStatusStream
         .listen(onPedestrianStatusChanged)
@@ -122,3 +139,6 @@ class DashBoardScreenProvider extends ChangeNotifier {
     //  if (!mounted) return;
   }
 }
+
+
+

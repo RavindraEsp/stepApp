@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:step_app/dashboard/dashboard_screen_provider.dart';
 import 'package:step_app/routes/route_name.dart';
+import 'package:step_app/widgets/buttons/custom_button.dart';
+import 'package:step_app/widgets/buttons/stop_button.dart';
 
 class DashBoardScreen extends StatefulWidget {
   const DashBoardScreen({super.key});
@@ -35,6 +38,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
     //  homeProvider = Provider.of<HomeScreenProvider>(context, listen: false);
 
     context.read<DashBoardScreenProvider>().getV();
+    context.read<DashBoardScreenProvider>().dashboardApiCAll();
 
     //  homeProvider.checkPermission();
   }
@@ -111,101 +115,97 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Consumer<DashBoardScreenProvider>(
           builder: (context, provider, child) {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+        return SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(left: 16.w, right: 16.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteName.settingScreen);
+                    },
+                    child: Icon(
+                      Icons.settings,
+                      size: 32,
+                    )),
 
-
-
-              GestureDetector(
-                onTap: (){
-                  Navigator.pushNamed(context, RouteName.settingScreen);
-                },
-                  child: Icon(Icons.settings,size: 32,)),
-
-              SizedBox(
-                height: 25,
-              ),
-              Text(
-                'Steps Taken',
-                style: TextStyle(fontSize: 30),
-              ),
-              Text(
-                provider.steps,
-                style: TextStyle(fontSize: 60),
-              ),
-              Divider(
-                height: 100,
-                thickness: 0,
-                color: Colors.white,
-              ),
-              Text(
-                'Pedestrian Status',
-                style: TextStyle(fontSize: 20),
-              ),
-              Icon(
-                provider.status == 'walking'
-                    ? Icons.directions_walk
-                    : provider.status == 'stopped'
-                        ? Icons.accessibility_new
-                        : Icons.error,
-                size: 50,
-              ),
-              Center(
-                child: Text(
-                  provider.status,
-                  style: provider.status == 'walking' ||
-                          provider.status == 'stopped'
-                      ? TextStyle(fontSize: 20)
-                      : TextStyle(fontSize: 20, color: Colors.red),
+                const SizedBox(
+                  height: 25,
                 ),
-              ),
-              Text(""),
-              ElevatedButton(
-                //     disabledColor: Colors.red,
-                // disabledTextColor: Colors.black,
+                const Text(
+                  'Steps Taken',
+                  style: TextStyle(fontSize: 30),
+                ),
+                Text(
+                  provider.steps,
+                  style: TextStyle(fontSize: 60),
+                ),
+                const Divider(
+                  height: 100,
+                  thickness: 0,
+                  color: Colors.white,
+                ),
+                const Text(
+                  'Pedestrian Status',
+                  style: TextStyle(fontSize: 20),
+                ),
+                Icon(
+                  provider.status == 'walking'
+                      ? Icons.directions_walk
+                      : provider.status == 'stopped'
+                          ? Icons.accessibility_new
+                          : Icons.error,
+                  size: 50,
+                ),
+                Center(
+                  child: Text(
+                    provider.status,
+                    style: provider.status == 'walking' ||
+                            provider.status == 'stopped'
+                        ? TextStyle(fontSize: 20)
+                        : TextStyle(fontSize: 20, color: Colors.red),
+                  ),
+                ),
+                Text(""),
 
-                onPressed: () {
-                  setState(() {
-                    provider.addTimerForApiCall();
-                  });
-                },
-                child: const Text('Start Button'),
-              ),
-              ElevatedButton(
-                //     disabledColor: Colors.red,
-                // disabledTextColor: Colors.black,
+                provider.isWalking == false
+                    ? CustomButton(
+                        onTap: () {
+                          provider.startApiCallAnAddTimerForSendDataApiCall();
+                          setState(() {});
+                        },
+                        buttonText: "Start")
+                    : const SizedBox(),
 
-                onPressed: () {
-                  setState(() {
-                    //  shouldCallApiFunction = false; // Set shouldCallFunction to false to stop function calls
-                    provider.apiTimer
-                        ?.cancel(); // Cancel the timer if it's running
-                  });
-                },
-                child: const Text('Stop Button'),
-              ),
-              ElevatedButton(
-                //     disabledColor: Colors.red,
-                // disabledTextColor: Colors.black,
+                // SizedBox(
+                //   height: 24.h,
+                // ),
 
-                onPressed: () {},
-                child: const Text('Navigate'),
-              ),
-              ElevatedButton(
-                //     disabledColor: Colors.red,
-                // disabledTextColor: Colors.black,
+                provider.isWalking == true
+                    ? StopButton(
+                        buttonText: "Stop",
+                        onTap: () {
+                          setState(() {
+                            //  shouldCallApiFunction = false; // Set shouldCallFunction to false to stop function calls
+                            provider
+                                .stopWalk(); // Cancel the timer if it's running
+                          });
+                        },
+                      )
+                    : const SizedBox(),
 
-                onPressed: () {
-                  provider.updateV();
-                },
-                child: const Text('ChangeValue'),
-              ),
-            ],
+                ElevatedButton(
+
+                  onPressed: () {
+                    provider.updateV();
+                  },
+                  child: const Text('ChangeValue'),
+                ),
+              ],
+            ),
           ),
         );
       }),

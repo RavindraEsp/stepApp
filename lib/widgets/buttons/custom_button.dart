@@ -8,7 +8,7 @@ import 'package:step_app/utilities/text_size_utility.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonText;
-  String? icon;
+
   final VoidCallback? onTap;
   final ButtonType? buttonType;
 
@@ -18,7 +18,6 @@ class CustomButton extends StatelessWidget {
     Key? key,
     required this.buttonText,
      this.onTap,
-    this.icon,
     this.buttonType,
 
   }) : super(key: key);
