@@ -110,6 +110,7 @@ class DashBoardScreenProvider extends ChangeNotifier {
   stopPedometer() {}
 
   void initPlatformState() {
+
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
     _pedestrianStatusStream
         .listen(onPedestrianStatusChanged)
