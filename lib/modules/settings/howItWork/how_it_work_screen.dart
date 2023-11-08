@@ -59,6 +59,11 @@ class _HowItWorkScreenState extends State<HowItWorkScreen> {
                       .copyWith(fontSize: TextSizeUtility.textSize16.sp),
                 ),
 
+
+
+
+
+
                 SizedBox(
                   height: 10.h,
                 ),
@@ -77,3 +82,5 @@ class _HowItWorkScreenState extends State<HowItWorkScreen> {
     );
   }
 }
+
+

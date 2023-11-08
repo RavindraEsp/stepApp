@@ -12,7 +12,7 @@ class DashBoardScreenProvider extends ChangeNotifier {
 
   late Stream<StepCount> _stepCountStream;
   late Stream<PedestrianStatus> _pedestrianStatusStream;
-  String status = '?', steps = '?';
+  String status = '?', steps = '0';
 
   bool isGetInitialValue = false;
   int pedometerInitialValue = 0;
@@ -49,7 +49,8 @@ class DashBoardScreenProvider extends ChangeNotifier {
     print(event);
     // setState(() {
     if (isGetInitialValue == false) {
-      pedometerInitialValue = event.steps;
+      //  pedometerInitialValue = event.steps;
+      pedometerInitialValue = event.steps - int.parse(steps);
       isGetInitialValue = true;
     }
     //   _steps = event.steps.toString();
@@ -61,22 +62,11 @@ class DashBoardScreenProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
-
-  void dummyMethod(){
-
-
+  void dummyMethod() {
     var actualValue = 0;
 
-
-   // actualValue = streamPedometer - startPedometerData;
-
-
-
-
+    // actualValue = streamPedometer - startPedometerData;
   }
-
-
 
   void onPedestrianStatusChanged(PedestrianStatus event) {
     print(event);
@@ -117,17 +107,7 @@ class DashBoardScreenProvider extends ChangeNotifier {
     }
   }
 
-
-
-
-
-  stopPedometer(){
-
-
-
-  }
-
-
+  stopPedometer() {}
 
   void initPlatformState() {
     _pedestrianStatusStream = Pedometer.pedestrianStatusStream;
@@ -137,8 +117,6 @@ class DashBoardScreenProvider extends ChangeNotifier {
 
     _stepCountStream = Pedometer.stepCountStream;
     _stepCountStream.listen(onStepCount).onError(onStepCountError);
-
-
 
     //  if (!mounted) return;
   }
