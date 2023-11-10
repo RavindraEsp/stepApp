@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:step_app/routes/app_routes.dart';
 import 'package:step_app/utilities/shared_preference.dart';
+import 'modules/dummy/dummy_screen.dart';
 import 'modules/splash/splash_screen.dart';
 
 void main() {
@@ -16,7 +17,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -56,9 +56,10 @@ class _MyAppState extends State<MyApp> {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            // home: const HomeScreen(),
-            home: const SplashScreen(),
-            // home: const SettingScreen(),
+
+            // home: const SplashScreen(),
+            home: DummyScreen(),
+
             // home: MultiProvider(
             //   providers: [
             //     ChangeNotifierProvider(create: (_) => HomeScreenProvider()),

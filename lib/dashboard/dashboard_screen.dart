@@ -140,7 +140,7 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
                   style: TextStyle(fontSize: 30),
                 ),
                 Text(
-                  provider.steps,
+                  "${provider.totalSteps}",
                   style: TextStyle(fontSize: 60),
                 ),
                 const Divider(
