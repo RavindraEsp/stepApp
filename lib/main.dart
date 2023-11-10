@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:step_app/routes/app_routes.dart';
 import 'package:step_app/utilities/shared_preference.dart';
 import 'modules/dummy/dummy_screen.dart';
+import 'modules/nftPackages/screens/nft_package_screen.dart';
 import 'modules/splash/splash_screen.dart';
 
 void main() {
@@ -58,7 +59,8 @@ class _MyAppState extends State<MyApp> {
             ),
 
             // home: const SplashScreen(),
-            home: DummyScreen(),
+            // home: DummyScreen(),
+            home: const NftPackageScreen(),
 
             // home: MultiProvider(
             //   providers: [
